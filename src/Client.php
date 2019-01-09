@@ -2,7 +2,9 @@
 
 namespace lisi4ok\NameDotCom;
 
+use GuzzleHttp\Client as GuzzleHttpClient;
 use lisi4ok\NameDotCom\Contracts\ClientInterface;
+use lisi4ok\NameDotCom\Contracts\ConfigurationInterface;
 
 /**
  * Class Client
@@ -11,34 +13,20 @@ use lisi4ok\NameDotCom\Contracts\ClientInterface;
 class Client implements ClientInterface
 {
     /**
-     * @var null|array
+     * @var GuzzleHttpClient
      */
-    private $configuration;
+    private $client;
 
     /**
      * Client constructor.
-     * @param array $configuration
+     *
+     * @param ConfigurationInterface $configuration
      */
-    public function __construct(array $configuration)
+    public function __construct(ConfigurationInterface $configuration)
     {
-        $this->setConfiguration($configuration);
-    }
-
-    /**
-     * @return array
-     */
-    public function getConfiguration(): array
-    {
-        return $this->configuration;
-    }
-
-    /**
-     * @param array $configuration
-     * @return ClientInterface
-     */
-    public function setConfiguration(array $configuration): ClientInterface
-    {
-        $this->configuration = $configuration;
-        return $this;
+        $this->client = new GuzzleHttpClient([
+            'base_uri' => $configuration->getUri(),
+            'auth' => [$configuration->getUsername(), $configuration->getToken()],
+        ]);
     }
 }

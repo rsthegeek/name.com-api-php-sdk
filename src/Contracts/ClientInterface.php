@@ -10,18 +10,8 @@ interface ClientInterface
 {
     /**
      * ClientInterface constructor.
-     * @param array $configuration
+     *
+     * @param ConfigurationInterface $configuration
      */
-    public function __construct(array $configuration)
-
-    /**
-     * @return array
-     */
-    public function getConfiguration(): array
-
-    /**
-     * @param array $configuration
-     * @return ClientInterface
-     */
-    public function setConfiguration(array $configuration): self
+    public function __construct(ConfigurationInterface $configuration);
 }
