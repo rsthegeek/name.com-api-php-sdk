@@ -10,7 +10,6 @@ interface ClientInterface
 {
     /**
      * ClientInterface constructor.
-     *
      * @param ConfigurationInterface $configuration
      */
     public function __construct(ConfigurationInterface $configuration);

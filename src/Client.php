@@ -19,7 +19,6 @@ class Client implements ClientInterface
 
     /**
      * Client constructor.
-     *
      * @param ConfigurationInterface $configuration
      */
     public function __construct(ConfigurationInterface $configuration)
@@ -28,5 +27,13 @@ class Client implements ClientInterface
             'base_uri' => $configuration->getUri(),
             'auth' => [$configuration->getUsername(), $configuration->getToken()],
         ]);
+    }
+
+    /**
+     * @return Domain
+     */
+    public function domain()
+    {
+        return (new Domain($this->client));
     }
 }

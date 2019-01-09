@@ -6,7 +6,6 @@ interface ConfigurationInterface
 {
     /**
      * Configuration constructor.
-     *
      * @param string $mode
      * @param string $apiVersion
      * @param string $username

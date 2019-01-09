@@ -4,6 +4,10 @@ namespace lisi4ok\NameDotCom;
 
 use  lisi4ok\NameDotCom\Contracts\ConfigurationInterface;
 
+/**
+ * Class Configuration
+ * @package lisi4ok\NameDotCom
+ */
 class Configuration implements ConfigurationInterface
 {
     const URI = 'https://api.name.com/';
@@ -26,7 +30,6 @@ class Configuration implements ConfigurationInterface
 
     /**
      * Configuration constructor.
-     *
      * @param string $mode
      * @param string $apiVersion
      * @param string $username

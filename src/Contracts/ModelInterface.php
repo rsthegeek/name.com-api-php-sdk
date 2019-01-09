@@ -12,18 +12,17 @@ interface ModelInterface
 {
     /**
      * ClientInterface constructor.
-     *
      * @param ClientInterface $client
      */
     public function __construct(ClientInterface $client);
 
-    public function list();
-
-    public function get();
-
-    public function create();
-
-    public function update();
-
-    public function delete();
+//    public function list();
+//
+//    public function get();
+//
+//    public function create();
+//
+//    public function update();
+//
+//    public function delete();
 }
