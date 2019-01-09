@@ -1,0 +1,32 @@
+{
+  "name": "lisi4ok/name.com-php-api-sdk",
+  "description": "name.com Rest API PHP SDK",
+  "keywords": [
+    "name.com",
+    "api",
+    "php",
+    "sdk",
+    "rest"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Zaio Klepoyshkov",
+      "email": "lisi4ok@gmail.com"
+    },
+    {
+      "name": "Evgeni Nurkov",
+      "email": "evgeni.nurkov@gmail.com"
+    }
+  ],
+  "require": {
+    "guzzlehttp/guzzle": "~6.0",
+    "php": ">= 7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "lisi4ok\\NameDotCom\\": "src/"
+    }
+  },
+  "minimum-stability": "dev"
+}
