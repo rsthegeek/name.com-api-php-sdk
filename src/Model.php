@@ -2,12 +2,14 @@
 
 namespace lisi4ok\NameDotCom;
 
-use Exception;
 use stdClass;
+use BadMethodCallException;
+use InvalidArgumentException;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
-use GuzzleHttp\Exception\ClientException;
 use lisi4ok\NameDotCom\Contracts\ModelInterface;
 
 /**
@@ -16,6 +18,11 @@ use lisi4ok\NameDotCom\Contracts\ModelInterface;
  */
 abstract class Model implements ModelInterface
 {
+    /**
+     * @var array
+     */
+    private static $methods = ['get', 'post', 'put', 'patch', 'delete'];
+
     /**
      * @var ClientInterface
      */
@@ -31,17 +38,47 @@ abstract class Model implements ModelInterface
     }
 
     /**
+     * @param $name
+     * @param $arguments
+     * @return stdClass
+     * @throws BadMethodCallException
+     * @throws InvalidArgumentException
+     * @throws GuzzleException
+     */
+    public function __call($name, $arguments)
+    {
+        $name = strtolower($name);
+        if (!in_array($name, self::$methods)) {
+            throw new BadMethodCallException;
+        }
+        if (!array_key_exists(0, $arguments) || !is_string($arguments[0])) {
+            throw new InvalidArgumentException;
+        }
+
+        if (array_key_exists(1, $arguments)) {
+            if (!is_array($arguments[1])) {
+                throw new InvalidArgumentException;
+            }
+
+            return $this->request($arguments[0], $name, $arguments[1]);
+        }
+
+        return $this->request($arguments[0], $name);
+    }
+
+    /**
      * @param string $uri
      * @param string $method
      * @param array $data
      * @return stdClass
-     * @throws \GuzzleHttp\Exception\GuzzleException|Exception
+     * @throws InvalidArgumentException
+     * @throws GuzzleException
      */
-    protected function request($uri = '', $method = 'get', $data = []): stdClass
+    protected function request(string $uri = '', string $method = 'get', array $data = []): stdClass
     {
         $method = strtolower($method);
-        if ($method == 'options' || $method == 'head') {
-            throw new Exception('Available Requests are: GET, POST, PUT, PATCH and DELETE');
+        if (!$uri || !in_array($method, self::$methods)) {
+            throw new InvalidArgumentException;
         }
 
         $options = [];

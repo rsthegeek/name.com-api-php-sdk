@@ -5,13 +5,13 @@ namespace lisi4ok\NameDotCom\Contracts;
 interface ConfigurationInterface
 {
     /**
-     * Configuration constructor.
+     * ConfigurationInterface constructor.
      * @param string $mode
-     * @param string $apiVersion
+     * @param int $apiVersion
      * @param string $username
      * @param string $token
      */
-    public function __construct(string $mode, string $apiVersion, string $username, string $token);
+    public function __construct(string $mode, int $apiVersion, string $username, string $token);
 
     /**
      * @return string

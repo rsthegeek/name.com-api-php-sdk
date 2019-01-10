@@ -5,6 +5,7 @@ namespace lisi4ok\NameDotCom;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use lisi4ok\NameDotCom\Contracts\ClientInterface;
 use lisi4ok\NameDotCom\Contracts\ConfigurationInterface;
+use lisi4ok\NameDotCom\Contracts\ModelInterface;
 
 /**
  * Class Client
@@ -30,10 +31,30 @@ class Client implements ClientInterface
     }
 
     /**
+     * @param string $name
+     * @return null|ModelInterface
+     */
+    public function __get(string $name): ModelInterface
+    {
+        if (method_exists(self::class, $name)) {
+            return $this->{$name}();
+        }
+        return null;
+    }
+
+    /**
      * @return Domain
      */
     public function domain()
     {
         return (new Domain($this->client));
+    }
+
+    /**
+     * @return DNS
+     */
+    public function dns()
+    {
+        return (new DNS($this->client));
     }
 }
