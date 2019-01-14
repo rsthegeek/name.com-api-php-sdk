@@ -151,6 +151,19 @@ class Domain extends Model
 
     /**
      * @param string $domain
+     * @param float $price
+     * @param int $years
+     * @param string|null $promoCode
+     * @return stdClass
+     * @throws GuzzleException
+     */
+    public function privacy(string $domain, float $price, int $years = 1, string $promoCode = null)
+    {
+        
+    }
+
+    /**
+     * @param string $domain
      * @return stdClass
      * @throws GuzzleException
      */
