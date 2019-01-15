@@ -59,6 +59,14 @@ class Client implements ClientInterface
     }
 
     /**
+     * @return DNSSEC
+     */
+    public function dnssec()
+    {
+        return (new DNSSEC($this->client));
+    }
+
+    /**
      * @return URLForwarding
      */
     public function urlForwarding()
