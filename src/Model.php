@@ -15,6 +15,11 @@ use lisi4ok\NameDotCom\Contracts\ModelInterface;
 /**
  * Class Model
  * @package lisi4ok\NameDotCom
+ * @method get(string $uri = '', array $data = [])
+ * @method post(string $uri = '', array $data = [])
+ * @method put(string $uri = '', array $data = [])
+ * @method patch(string $uri = '', array $data = [])
+ * @method delete(string $uri = '', array $data = [])
  */
 abstract class Model implements ModelInterface
 {

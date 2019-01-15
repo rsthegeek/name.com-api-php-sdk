@@ -8,6 +8,11 @@ use GuzzleHttp\Exception\GuzzleException;
 /**
  * Class Domain
  * @package lisi4ok\NameDotCom
+ * @method get(string $uri = '', array $data = [])
+ * @method post(string $uri = '', array $data = [])
+ * @method put(string $uri = '', array $data = [])
+ * @method patch(string $uri = '', array $data = [])
+ * @method delete(string $uri = '', array $data = [])
  */
 class Domain extends Model
 {
@@ -32,7 +37,7 @@ class Domain extends Model
      * @return stdClass
      * @throws GuzzleException
      */
-    public function find(string $domain): stdClass
+    public function find(string $domain)
     {
         return $this->get('domains/' . $domain);
     }
@@ -59,7 +64,7 @@ class Domain extends Model
      * @throws GuzzleException
      */
     public function create(string $domain, float $price = null, int $years = 1,
-        string $purchaseType = 'registration', $tldRequirements = null, string $promoCode = null)
+                           string $purchaseType = 'registration', $tldRequirements = null, string $promoCode = null)
     {
         $data = [
             'domain' => [
@@ -159,7 +164,15 @@ class Domain extends Model
      */
     public function privacy(string $domain, float $price, int $years = 1, string $promoCode = null)
     {
-        
+        $data = [
+            'purchasePrice' => $price,
+            'years' => $years,
+        ];
+        if ($promoCode) {
+            $data['promoCode'] = $promoCode;
+        }
+
+        return $this->post('domains/' . $domain . ':purchasePrivacy', $data);
     }
 
     /**
