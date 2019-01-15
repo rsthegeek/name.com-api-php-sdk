@@ -65,4 +65,12 @@ class Client implements ClientInterface
     {
         return (new URLForwarding($this->client));
     }
+
+    /**
+     * @return EmailForwarding
+     */
+    public function emailForwarding()
+    {
+        return (new EmailForwarding($this->client));
+    }
 }
