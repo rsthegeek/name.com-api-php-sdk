@@ -57,4 +57,12 @@ class Client implements ClientInterface
     {
         return (new DNS($this->client));
     }
+
+    /**
+     * @return URLForwarding
+     */
+    public function urlForwarding()
+    {
+        return (new URLForwarding($this->client));
+    }
 }
