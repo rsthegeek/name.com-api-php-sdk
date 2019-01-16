@@ -73,4 +73,15 @@ class DNSSEC extends Model
             'digest' => $digest,
         ]);
     }
+
+    /**
+     * @param string $domain
+     * @param string $digest
+     * @return stdClass
+     * @throws GuzzleException
+     */
+    public function remove(string $domain, string $digest)
+    {
+        return $this->delete('domains/' . $domain . '/dnssec/' . $digest);
+    }
 }
