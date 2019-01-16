@@ -34,12 +34,12 @@ class DNS extends Model
     }
 
     /**
-     * @param int $id
      * @param string $domain
+     * @param int $id
      * @return stdClass
      * @throws GuzzleException
      */
-    public function find(int $id, string $domain)
+    public function find(string $domain, int $id)
     {
         return $this->get('domains/' . $domain . '/records/' . $id);
     }

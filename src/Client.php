@@ -81,4 +81,20 @@ class Client implements ClientInterface
     {
         return (new EmailForwarding($this->client));
     }
+
+    /**
+     * @return Transfer
+     */
+    public function transfer()
+    {
+        return (new Transfer($this->client));
+    }
+
+    /**
+     * @return VanityNameserver
+     */
+    public function vanityNameserver()
+    {
+        return (new VanityNameserver($this->client));
+    }
 }
