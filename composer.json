@@ -20,8 +20,8 @@
     }
   ],
   "require": {
-    "guzzlehttp/guzzle": "^7.2",
     "php": ">= 7.2",
+    "guzzlehttp/guzzle": "^7.2",
     "ext-json": "*"
   },
   "autoload": {
