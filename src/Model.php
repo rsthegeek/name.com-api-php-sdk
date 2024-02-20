@@ -9,7 +9,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\RequestOptions;
-use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Exception\ServerException;
 use lisi4ok\NameDotCom\Contracts\ModelInterface;
 
 /**
@@ -93,8 +93,8 @@ abstract class Model implements ModelInterface
 
         try {
             $response = $this->client->request($method, urlencode($uri), $options);
-        } catch (ClientException $e) {
-            throw $e;
+        } catch (ClientException|ServerException $e) {
+            $response = $e->getResponse();
         }
 
         return json_decode($response->getBody()->getContents());
