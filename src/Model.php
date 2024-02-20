@@ -93,7 +93,7 @@ abstract class Model implements ModelInterface
 
         try {
             /** @var ResponseInterface $response */
-            $response = $this->client->request($method, $uri, $options);
+            $response = $this->client->request($method, urlencode($uri), $options);
         } catch (ClientException $e) {
             throw $e;
         }
